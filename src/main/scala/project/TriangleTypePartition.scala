@@ -103,7 +103,7 @@ object TriangleTypePartition {
 			val src = parts(0).toInt
 			val dst = parts(1).toInt
 			if (src < dst) (src, dst) else (dst, src) // Ensure src < dst for consistency
-		}
+		}.filter { case (src, dst) => src != dst } // Filter self-edges
 
 		val mapped = edges.flatMap(edge => mapper(edge, rho))
 
